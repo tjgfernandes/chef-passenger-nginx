@@ -115,6 +115,7 @@ template "/opt/nginx/conf/nginx.conf" do
     :ruby_version => node['passenger-nginx']['ruby_version'],
     :rvm => node['rvm'],
     :passenger_root => passenger_root,
+    :passenger_ruby => "/usr/local/rvm/gems/ruby-#{node['passenger-nginx']['ruby_version']}/wrappers/ruby",
     :passenger => node['passenger-nginx']['passenger'],
     :nginx => node['passenger-nginx']['nginx']
   })
