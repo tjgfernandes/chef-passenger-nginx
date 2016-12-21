@@ -11,6 +11,12 @@ server {
   <% if @app_env %>
   passenger_app_env <%= @app_env %>;
   <% end %>
+  <% if @passenger_user %>
+  passenger_user <%= @passenger_user %>;
+  <% end %>
+  <% if @passenger_group %>
+  passenger_group <%= @passenger_group %>;
+  <% end %>
   <% if @passenger_min_instances %>
   passenger_min_instances <%= @passenger_min_instances %>;
   <% end %>
@@ -59,6 +65,13 @@ server {
   ssl_ciphers  HIGH:!aNULL:!MD5;
   ssl_prefer_server_ciphers   on;
   <% end %>
+
+  location ~ ^/(assets)/  {
+    root <%= @root %>;
+    gzip_static on;
+    expires max;
+    add_header Cache-Control public;
+  }
 
   # Maintenance Page
   if (-f $document_root/system/maintenance.html) {
